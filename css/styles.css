@@ -1,0 +1,33 @@
+.time-card {
+  border: 1px solid blue;
+  padding: 1px;
+  width: 100px;
+  height: 100px;
+}
+
+.time-card > div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform .25s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.time-card.flip > div {
+  transform: rotateX(360deg);
+}
+
+.time-card > div::after {
+  content: '';
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid green;
+}
+
+
