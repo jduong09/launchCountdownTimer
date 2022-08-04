@@ -1,3 +1,34 @@
+body {
+  min-height: 100vh;
+  font-family: 'Red Hat Text', sans-serif;
+  font-weight: 700;
+  background-color: hsl(235, 16%, 14%);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('../images/bg-stars.svg');
+  background-position: top;
+  background-size: cover;
+}
+
+h1 {
+  margin: 2rem 0;
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: .2rem;
+  color: hsl(0, 0%, 100%);
+}
+
+.countdown-card-list {
+  display: flex;
+}
+
+
 .time-card {
   border: 1px solid blue;
   padding: 1px;
@@ -5,29 +36,132 @@
   height: 100px;
 }
 
-.time-card > div {
+.card {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform .25s;
   display: flex;
   justify-content: center;
   align-items: center;
+  perspective: 400px;
+  text-align: center;
+  padding-bottom: .72em;
+  font-size: 1rem;
+  line-height: .95;
+  transform: translateZ(0);
 }
 
-
-.time-card.flip > div {
-  transform: rotateX(360deg);
+.flip-clock-piece {
+  display: inline-block;
+  margin: 0 5px;
 }
 
-.time-card > div::after {
-  content: '';
-  width: 100%;
-  height: 50%;
+.card {
+  display: block;
+  position: relative; 
+  padding-bottom: .72em;
+  font-size: 9vw;
+  line-height: 0.95;
+}
+
+.card-top,
+.card-bottom,
+.card-back::before,
+.card-back::after {
+  display: block;
+  height: .72em;
+  color: hsl(345, 95%, 68%);
+  background: hsl(237, 18%, 59%);
+  padding: 0.25em 0.25em;
+  transform-style: preserve-3d;
+  width: 1.8em;
+  transform: translateZ(0);
+}
+
+.card-bottom { 
+  color: hsl(345, 95%, 68%);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-top: solid 1px #000;
+  background: hsl(237, 18%, 59%); 
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.card-bottom::after {
+  display: block;
+  margin-top: -.72em;
+}
+
+/*
+.card-back::before,
+.card-bottom::after {
+  content: '12';
+}
+*/
+
+.card-back {
   position: absolute;
   top: 0;
-  left: 0;
-  border-bottom: 1px solid green;
+  height: 100%;
+  width: 1.8em;
+  left: 0%;
+  pointer-events: none;
 }
 
+.card-back::before {
+  position: relative;
+  z-index: -1;
+  overflow: hidden;
+}
 
+.flip .card-back::before {
+  animation: flipTop 0.3s cubic-bezier(.37,.01,.94,.35);
+  animation-fill-mode: both;
+  transform-origin: center bottom;
+}
+
+.flip .card-back .card-bottom {
+  transform-origin: center top;
+  animation-fill-mode: both;
+  animation: flipBottom 0.6s cubic-bezier(.15,.45,.28,1); 
+}
+
+@keyframes flipTop {
+  0% {
+    transform: rotateX(0deg);
+    z-index: 2;
+  }
+  0%, 99% {
+    opacity: 0.99;
+  }
+  100% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes flipBottom {
+  0%, 50% {
+    z-index: -1;
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  51% {
+    opacity: 0.99;
+  }
+  100% {
+    opacity: 0.99;
+    transform: rotateX(0deg);
+    z-index: 5;
+  }
+}
+
+footer > ul {
+  width: 65%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
