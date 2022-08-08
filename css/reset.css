@@ -1,4 +1,4 @@
-html, body, div, span, h1, h2, h3, p, a, img, header, footer, nav, section, ul, li, *::before, *::after {
+html, body, main, div, span, h1, h2, h3, p, a, img, header, footer, nav, section, ul, li, *::before, *::after {
   margin: 0;
   padding: 0;
   border: 0;

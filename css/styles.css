@@ -2,16 +2,20 @@ body {
   min-height: 100vh;
   font-family: 'Red Hat Text', sans-serif;
   font-weight: 700;
-  background-color: hsl(235, 16%, 14%);
+  background-color: hsl(234, 17%, 12%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url('../images/bg-stars.svg');
+  background-position: top;
+  background-size: contain;
 }
 
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('../images/bg-stars.svg');
-  background-position: top;
-  background-size: cover;
+  margin: 5rem 0;
 }
 
 h1 {
@@ -71,7 +75,7 @@ h1 {
   display: block;
   height: .72em;
   color: hsl(345, 95%, 68%);
-  background: hsl(237, 18%, 59%);
+  background: hsl(236, 21%, 26%);
   padding: 0.25em 0.25em;
   transform-style: preserve-3d;
   width: 1.8em;
@@ -84,7 +88,7 @@ h1 {
   top: 50%;
   left: 0;
   border-top: solid 1px #000;
-  background: hsl(237, 18%, 59%); 
+  background: hsl(236, 21%, 26%); 
   pointer-events: none;
   overflow: hidden;
 }
@@ -156,6 +160,23 @@ h1 {
     transform: rotateX(0deg);
     z-index: 5;
   }
+}
+
+footer {
+  height: 100px;
+  background-image: url('../images/pattern-hills.svg');
+  background-position: top;
+  background: #2F2439;
+  position: relative;
+}
+
+.footer-pattern-hills {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: -1;
 }
 
 footer > ul {
