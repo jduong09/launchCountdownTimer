@@ -9,27 +9,41 @@ body {
   background-image: url('../images/bg-stars.svg');
   background-position: top;
   background-size: contain;
+  position: relative;
 }
 
 main {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 5rem 0;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 h1 {
   margin: 2rem 0;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   text-align: center;
   line-height: 1.5rem;
   text-transform: uppercase;
-  letter-spacing: .2rem;
+  letter-spacing: .4rem;
   color: hsl(0, 0%, 100%);
+}
+
+.card-container {
+  width: 90%;
+  margin: 0 auto;
 }
 
 .countdown-card-list {
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  perspective: 400px;
 }
 
 
@@ -41,44 +55,45 @@ h1 {
 }
 
 .card {
+  display: block;
   position: relative;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  perspective: 400px;
+  perspective: 200px;
   text-align: center;
-  padding-bottom: .72em;
-  font-size: 1rem;
+  padding-bottom: 2rem;
+  font-size: 9vw;
   line-height: .95;
   transform: translateZ(0);
 }
 
 .flip-clock-piece {
-  display: inline-block;
+  display: inline-flex;
   margin: 0 5px;
+  flex-direction: column;
 }
 
-.card {
-  display: block;
-  position: relative; 
-  padding-bottom: .72em;
-  font-size: 9vw;
-  line-height: 0.95;
+.flip-clock-piece > span:last-of-type {
+  margin-top: .5rem;
+  color: hsl(237, 18%, 59%);
+  text-transform: uppercase;
+  font-size: .5rem;
+  letter-spacing: .1rem;
 }
+
 
 .card-top,
 .card-bottom,
 .card-back::before,
 .card-back::after {
   display: block;
-  height: .72em;
+  height: 2rem;
   color: hsl(345, 95%, 68%);
   background: hsl(236, 21%, 26%);
-  padding: 0.25em 0.25em;
+  border-radius: .5rem;
+  padding: 1rem 0.5rem;
   transform-style: preserve-3d;
-  width: 1.8em;
+  width: 5rem;
   transform: translateZ(0);
 }
 
@@ -95,21 +110,17 @@ h1 {
 
 .card-bottom::after {
   display: block;
-  margin-top: -.72em;
+  margin-top: -2rem;
 }
 
-/*
-.card-back::before,
-.card-bottom::after {
-  content: '12';
+.card-back::before, .card-bottom::after {
+  content: attr(data-value);
 }
-*/
 
 .card-back {
   position: absolute;
   top: 0;
   height: 100%;
-  width: 1.8em;
   left: 0%;
   pointer-events: none;
 }
@@ -121,7 +132,7 @@ h1 {
 }
 
 .flip .card-back::before {
-  animation: flipTop 0.3s cubic-bezier(.37,.01,.94,.35);
+  animation: flipTop 0.45s cubic-bezier(.37,.01,.94,.35);
   animation-fill-mode: both;
   transform-origin: center bottom;
 }
@@ -129,7 +140,7 @@ h1 {
 .flip .card-back .card-bottom {
   transform-origin: center top;
   animation-fill-mode: both;
-  animation: flipBottom 0.6s cubic-bezier(.15,.45,.28,1); 
+  animation: flipBottom .9s cubic-bezier(.15,.45,.28,1); 
 }
 
 @keyframes flipTop {
@@ -163,11 +174,14 @@ h1 {
 }
 
 footer {
-  height: 100px;
+  width: 100%;
+  height: 75px;
   background-image: url('../images/pattern-hills.svg');
   background-position: top;
   background: #2F2439;
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .footer-pattern-hills {

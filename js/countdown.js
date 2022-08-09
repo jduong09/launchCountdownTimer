@@ -7,60 +7,70 @@
 
   // Every second, we need to run update function on the flip cards
   // Update function
-  // 
+  
+
+  // card-top, card-back --> card-bottom::after becomes the next number
+  // card-bottom, card-back::before are current/previous number
 
 */
 document.addEventListener('DOMContentLoaded', () => {
- 
+
+  // Get day-card, hour-card, minute-card, second-card
   const dayMarker = document.getElementById('day-card');
   const hourMarker = document.getElementById('hour-card');
   const minuteMarker = document.getElementById('minute-card');
   const secondMarker = document.getElementById('second-card');
+
+  
+  dayMarker.children[0].children[1].setAttribute('data-value', '14');
+  dayMarker.children[0].children[2].setAttribute('data-value', '14');
+  dayMarker.children[0].children[2].children[0].setAttribute('data-value', '14');
+  
+  hourMarker.children[0].children[1].setAttribute('data-value', '00');
+  hourMarker.children[0].children[2].setAttribute('data-value', '00');
+  hourMarker.children[0].children[2].children[0].setAttribute('data-value', '00');
+
+  minuteMarker.children[0].children[1].setAttribute('data-value', '00');
+  minuteMarker.children[0].children[2].setAttribute('data-value', '00');
+  minuteMarker.children[0].children[2].children[0].setAttribute('data-value', '00');
+
+
+  secondMarker.children[0].children[1].setAttribute('data-value', '00');
+  secondMarker.children[0].children[2].setAttribute('data-value', '00');
+  secondMarker.children[0].children[2].children[0].setAttribute('data-value', '00');
+
+  const cards = [dayMarker, hourMarker, minuteMarker, secondMarker];
+
+  // Create date object fourteen days from now
   const fourteenDaysFromNow = new Date(new Date().getTime() + 1209600000).getTime();
+  
   window.setInterval(() => {
     const now = new Date().getTime();
-    const exactDay = dayMarker.children[0].innerHTML;
-    const exactHour = hourMarker.children[0].innerHTML;
-    const exactMinute = minuteMarker.children[0].innerHTML;
-    const exactSecond = secondMarker.children[0].children[0].innerHTML;
+  
+    const markers = [dayMarker.children[0].children[0].innerHTML, hourMarker.children[0].children[0].innerHTML, minuteMarker.children[0].children[0].innerHTML, secondMarker.children[0].children[0].innerHTML]
 
-    
-    const top = document.querySelector('.card-top');
-    const bottom = document.querySelector('.card-bottom');
-    const back = document.querySelector('.card-back');
-    const backBottom = document.querySelector('.card-back .card-bottom');
-    console.log(top, bottom, back, backBottom);
-
-    // Time left in milliseconds=
+    // Time left in milliseconds 
     const distanceFromDate = fourteenDaysFromNow - now;
 
-    const daysAway = Math.floor(distanceFromDate / (1000 * 60 * 60 *24));
-    dayMarker.children[0].innerHTML = daysAway;
+    const currentTime = [Math.floor(distanceFromDate / (1000 * 60 * 60 * 24)), Math.floor((distanceFromDate % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)), Math.floor((distanceFromDate % (1000 * 60 * 60)) / (1000 * 60)), Math.floor((distanceFromDate % (1000 * 60)) / 1000)];
 
-    const hours = Math.floor((distanceFromDate % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    hourMarker.children[0].innerHTML = hours;
+    for (let i = 0; i < markers.length; i++) {
+      const exactTime = markers[i];
 
-    var minutes = Math.floor((distanceFromDate % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distanceFromDate % (1000 * 60)) / 1000);
-    minuteMarker.children[0].children[0].innerHTML = minutes;
-    secondMarker.children[0].children[0].innerHTML = seconds;
-    // Add class in order to create animation.
+      if (parseInt(exactTime) !== currentTime[i]) {
+        const updatedTime = ( '0' + currentTime[i] ).slice(-2);
+        if (parseInt(exactTime) >= 0) {
+          cards[i].children[0].children[1].setAttribute('data-value', exactTime);
+          cards[i].children[0].children[2].setAttribute('data-value', exactTime);
+        }
 
-    /*
-    if (exactSecond != seconds) {
-      if (exactSecond > 0) {
-        back.innerHTML = exactSecond;
-        bottom.innerHTML = exactSecond;
+        cards[i].children[0].children[0].innerHTML = updatedTime;
+        cards[i].children[0].children[2].children[0].setAttribute('data-value', updatedTime);
+ 
+        cards[i].classList.remove('flip');
+        void cards[i].offsetWidth;
+        cards[i].classList.add('flip');
       }
-      top.innerHTML = exactSecond;
-      backBottom.innerHTML = exactSecond;
-
-      secondMarker.classList.add('flip');
-      exactSecond = exactSecond - 1;
-      setTimeout(() => {
-        secondMarker.classList.remove('flip');
-      }, 500);
     }
-    */
   }, 1000);
 });
