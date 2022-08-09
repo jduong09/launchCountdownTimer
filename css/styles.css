@@ -46,14 +46,6 @@ h1 {
   perspective: 400px;
 }
 
-
-.time-card {
-  border: 1px solid blue;
-  padding: 1px;
-  width: 100px;
-  height: 100px;
-}
-
 .card {
   display: block;
   position: relative;
@@ -199,4 +191,115 @@ footer > ul {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+footer > ul > li:hover > svg > path {
+  fill:hsl(345, 95%, 68%);
+  cursor: pointer;
+}
+
+@media (min-width: 400px) {
+  .card-container {
+    width: 80%;
+  }
+
+  .card {
+    font-size: 8vw;
+  }
+}
+
+@media (min-width: 576px) {
+  .card {
+    font-size: 6vw;
+  }
+
+  .footer-pattern-hills {
+    top: -140px;
+  }
+
+  footer > ul {
+    width: 40%;
+  }
+}
+
+@media (min-width: 767px) {
+  main {
+    top: 30%;
+  }
+
+  h1 {
+    margin: 5rem 0;
+  }
+
+  .card-container {
+    width: 50%;
+  }
+
+  .card {
+    font-size: 3rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .card-top, .card-bottom, .card-back::before, .card-back::after {
+    height: 2.5rem;
+    width: 6rem;
+  }
+
+  .card-bottom::after {
+    margin-top: -2.5rem;
+  }
+
+  footer > ul {
+    width: 20%;
+  }
+
+  .footer-pattern-hills {
+    top: -75px;
+  }
+}
+
+@media (min-width: 922px) {
+  main {
+    top: 35%;
+  }
+}
+
+@media (min-width: 1200px) {
+  h1 {
+    margin: 0 0 7rem 0;
+  }
+
+  .card {
+    font-size: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .card-top, .card-bottom, .card-back::before, .card-back::after {
+    height: 4rem;
+    width: 8rem;
+    padding: 2rem .5rem;
+  }
+
+  .card-bottom::after {
+    margin-top: -4rem;
+  }
+
+  footer {
+    height: 100px;
+  }
+
+  footer > ul {
+    width: 15%;
+  }
+
+  .footer-pattern-hills {
+    top: -100px;
+  }
+}
+
+@media (min-width: 1400px) {
+
+  footer > ul {
+    width: 12.5%;
+  }
 }

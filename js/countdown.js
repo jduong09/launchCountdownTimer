@@ -1,20 +1,4 @@
-/*
-  Challenge: Create a countdown timer that will start at 14 days, with each second counting down and changing the 
-  Bonus: When a card changes, make the card change from the middle.
-
-  14 days 0 Hours 0 Minutes 0 Seconds
-  13 days 23 Hours 59 Minutes 59 59 Seconds
-
-  // Every second, we need to run update function on the flip cards
-  // Update function
-  
-
-  // card-top, card-back --> card-bottom::after becomes the next number
-  // card-bottom, card-back::before are current/previous number
-
-*/
 document.addEventListener('DOMContentLoaded', () => {
-
   // Get day-card, hour-card, minute-card, second-card
   const dayMarker = document.getElementById('day-card');
   const hourMarker = document.getElementById('hour-card');
